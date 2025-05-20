@@ -32,4 +32,4 @@ jobs:
           app-name: dataquality
           slot-name: Production
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE }}
-          package: app.zip
+          package: 'dq_api'
