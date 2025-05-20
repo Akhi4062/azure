@@ -3,7 +3,7 @@ name: Deploy Python app to Azure Web App
 on:
   push:
     branches:
-      - main  
+      - main
 
 jobs:
   build-and-deploy:
@@ -24,9 +24,13 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
 
+    - name: Azure Login
+      uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
+
     - name: Deploy to Azure Web App
       uses: azure/webapps-deploy@v2
       with:
-        app-name: 'dq-fastapi-api'
-        publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
+        app-name: 'dataquality'  # Your actual App Service name
         package: './dq_api'
