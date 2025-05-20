@@ -3,7 +3,7 @@ name: Deploy Python app to Azure Web App
 on:
   push:
     branches:
-      - main
+      - main  # or your branch name
 
 jobs:
   build-and-deploy:
@@ -22,12 +22,13 @@ jobs:
 
     - name: Install dependencies
       run: |
+        cd dq_api
         python -m pip install --upgrade pip
         pip install -r requirements.txt
 
     - name: Deploy to Azure Web App
       uses: azure/webapps-deploy@v2
       with:
-        app-name: 'your-app-service-name'
+        app-name: 'your-app-service-name'  # replace with your actual app service name
         publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
-        package: '.'
+        package: 'dq_api'
