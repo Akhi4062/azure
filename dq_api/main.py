@@ -5,7 +5,7 @@ app = FastAPI()
 
 @app.get("/")
 def read_root():
-    return {"message": "DQ API is up!"}
+    return {"message": "DQ API is up!"} 
 
 @app.get("/files")
 def get_files():
